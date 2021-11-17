@@ -19,11 +19,33 @@ public class MagicSquareTest {
             0b1_0111_1111,
             0b1_1111_1111};
 
-    // TODO: add a testGetChoices() method
-    
-    // TODO: add a testGetSquare() method
+    // Tests whether the numbers were added to choices
+    @Test
+    public void testGetChoices(){
+        MagicSquare ms = new MagicSquare(selections);
+        for (byte i = 0; i < selections.length; i++) {
+            ms.choose(selections[i]);
+        }
+        //511 is 0b11111111
+        assertEquals(511, ms.getChoices());
 
-    // TODO: Add a testHasAlreadyChosen() method
+    }
+    
+    // Tests the getter to return the provided array
+    @Test
+    public void testGetSquare(){
+        MagicSquare ms = new MagicSquare(selections);
+        byte[] bytes = ms.getSquare();
+        assertArrayEquals(bytes, selections);
+    }
+
+    //Returns true if the number has been selected
+    @Test
+    public void testHasAlreadyChosen(){
+        MagicSquare ms = new MagicSquare(selections);
+        ms.choose((byte)2);
+        assertTrue("incorrectly returned false", ms.hasAlreadyChosen((byte)2));
+    }
     
     @Test
     public void testPrintChoicesEmptySquare() {

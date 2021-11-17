@@ -61,21 +61,27 @@ public class MagicSquare {
         return this.square;
     }
 
+    /**
+     *The method loops over the provided array of winning combinations
+     * and checks whether a player has chosen a number that corresponds to the
+     * array of choices. If so, places the number in the position in the array.
+     * Otherwise, inserts an "_"
+     * @return 3x3 grid representation of the choices array
+     */
     public String toString() {
 
         String result = "";
-        /*char[] chars = result.toCharArray();*/
+
         for (int i = 0; i < square.length; i++) {
             if(i == 3 || i== 6){
                result += System.lineSeparator();
             }
-            if (hasAlreadyChosen((byte)(i + 1))) {
-                result += square[i] + " ";
+            if (hasAlreadyChosen((square[i]))) {
+                result += square[i] +" ";
             }else{
                 result += "_ ";
             }
         }
         return result;
     }
-
 }

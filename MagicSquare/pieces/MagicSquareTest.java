@@ -1,4 +1,8 @@
-
+/*Assignment: Magic Squares
+ * Author: Vladimir Ivanov
+ * Date: 11/18/21
+ * File: magicSquareTest.java
+ * */
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -6,6 +10,9 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 
+/**
+ * JUnit test for MagicSquare class
+ */
 public class MagicSquareTest {
 
     private static byte[] selections = {2, 7, 6, 9, 5, 1, 4, 3, 8};
@@ -26,9 +33,9 @@ public class MagicSquareTest {
         for (byte i = 0; i < selections.length; i++) {
             ms.choose(selections[i]);
         }
+
         //511 is 0b11111111
         assertEquals(511, ms.getChoices());
-
     }
     
     // Tests the getter to return the provided array
@@ -49,9 +56,8 @@ public class MagicSquareTest {
     
     @Test
     public void testPrintChoicesEmptySquare() {
+
         MagicSquare ms = new MagicSquare(selections);
-
-
         // redirect output from console window into a PrintStream
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -115,6 +121,4 @@ public class MagicSquareTest {
         assertEquals("print choices incorrect output", expectedConsoleOutput, out.toString());
 
     }
-
-
 }

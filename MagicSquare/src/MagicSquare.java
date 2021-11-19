@@ -1,5 +1,8 @@
-import java.util.Arrays;
-
+/*Assignment: Magic Squares
+ * Author: Vladimir Ivanov
+ * Date: 11/18/21
+ * File: MagicSquare.java
+ * */
 public class MagicSquare {
     private byte[] square;
     private short choices;
@@ -19,12 +22,6 @@ public class MagicSquare {
      * @return
      */
     public boolean choose(byte selection) {
-        //set method from bit array class
-        //calls hasAlreadyChosen() method
-        //checks for IllegalArgumentException(1-9)
-        //checks whether the number has already been chosen...
-        //if chosen returns false
-        //else sets the bit and returns true
 
         if (selection < 1 || selection > 9) {
             throw new IllegalArgumentException();

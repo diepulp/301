@@ -1,3 +1,8 @@
+/*
+ * Assignment: ABCMachine
+ * Author: Susan Uland, Josh Archer, and yours truly (to a certain extent), Vladimir Ivanov
+ * Date: 11/28/21
+ * File: ALU.java*/
 package abc;
 
 public class ALU {
@@ -8,10 +13,16 @@ public class ALU {
         status = Nzp.ZERO;
     }
 
-    //TODO: This method will perform a math operation on two numbers
-    // and set the nzp status
-    // appropriately based on whether the
-    // math operation resulting in a postive, negative, or zero value
+    /**
+     *     This method performs a math operation on two numbers
+     *     and sets the nzp status
+     *     appropriately based on whether the
+     *     math operation resulting in a postive, negative, or zero value
+     * @param num1 source register 1
+     * @param operator enum for math operations
+     * @param num2 source register 2
+     * @return the result of calculations
+     */
 
     public short operate(short num1, Operator operator, short num2) {
         short result = 0;

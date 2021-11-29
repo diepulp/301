@@ -1,3 +1,8 @@
+/*
+ * Assignment: ABCMachine
+ * Author: Susan Uland, Josh Archer, and yours truly to a certain extent, Vladimir Ivanov
+ * Date: 11/28/21
+ * File: ABCMachine.java*/
 package abc;
 
 /**
@@ -30,11 +35,11 @@ public class ControlUnit {
 
     }
 
-    /*
-     * TODO: This method performs the fetch step for the ControlUnit
-     *  1. Access the memory address for the next instruction in RAM(memory array) (use the PC register)
-     *  2. Load this instruction from memory into the Instruction Register  (IR)
-     *  3. Increment the Program Counter (PC) register
+    /**
+     *          This method performs the fetch step for the ControlUnit; accesses the memory address for the next
+     *          instruction in RAM(memory array) (use the PC register);
+     *          loads this instruction from memory into the Instruction Register  (IR);
+     *          increment the Program Counter (PC) register
      */
     public void fetch() {
         // retrieve instruction from the memory array at pc index
@@ -49,10 +54,9 @@ public class ControlUnit {
         machine.setPc((byte)(machine.getPc() + 1));
     }
 
-    /*
-     * TODO: This method decodes and executes the instruction according to the
-     *  ABCMachine Instruction Set and stores the result. You may want to create private
-     *  helper methods for use by this method.
+    /**
+     *      This method decodes and executes the instruction according to the
+     *      ABCMachine Instruction Set and stores the result.
      */
     public void decodeExecuteStore() {
         // opcode values
@@ -76,15 +80,19 @@ public class ControlUnit {
             case SUB:
                 reg[dest] = machine.getAlu()
                         .operate(reg[src1], Operator.SUB, reg[src2]);
+                break;
             case MULT:
+                //multiply the values is src1 * src2 and store at the dest reg
                 reg[dest] = machine.getAlu()
                         .operate(reg[src1], Operator.MULT, reg[src2]);
+                break;
             case DIV:
                 reg[dest] = machine.getAlu()
                         .operate(reg[src1], Operator.DIV, reg[src2]);
+                break;
             case STORE:
                 machine.getMemory()[isolateAddressIR()] = reg[src1];
-
+                break;
             case LOAD:
                 // load from memory to a register
                 reg[src1] = machine.getMemory()[isolateAddressIR()];
@@ -96,6 +104,7 @@ public class ControlUnit {
 
             case JUMP:
               reg[machine.getPc()] = machine.getMemory()[isolateAddressIR()];
+              break;
 
         } // end of switch
 
@@ -115,14 +124,18 @@ public class ControlUnit {
         if ( nzp == 0b100 && machine.getAlu().getStatus() == Nzp.NEGATIVE ){
             // update the program counter to the address in the IR
             machine.setPc((byte) isolateAddressIR());
-        }else if(nzp == 0b001 && machine.getAlu().getStatus() == Nzp.ZERO ){
+
+            // if nzp = 0b010 and status = Nzp.ZERO, branch
+        }else if(nzp == 0b001 && machine.getAlu().getStatus() == Nzp.POSITIVE ){
             machine.setPc((byte) isolateAddressIR());
-        }else{
+
+            // if nzp = 0b001 and status = Nzp.POSITIVE, branch
+        }else if(nzp == 0b010 && machine.getAlu().getStatus() == Nzp.ZERO){
             machine.setPc((byte) isolateAddressIR());
         }
-        // if nzp = 0b010 and status = Nzp.ZERO, branch
 
-        // if nzp = 0b001 and status = Nzp.POSITIVE, branch
+
+
     }
     /**
      *

@@ -1,3 +1,8 @@
+/*
+* Assignment: ABCMachine
+* Author: Susan Uland, Josh Archer, and yours truly to a certain extent, Vladimir Ivanov
+* Date: 11/28/21
+* File: ABCMachine.java*/
 package abc;
 
 import java.io.IOException;

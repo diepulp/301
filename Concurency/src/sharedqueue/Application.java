@@ -1,9 +1,21 @@
+/*
+ * Assignment: Concurrency
+ * Author: Vladimir Ivanov
+ * Date: 12/05/21
+ * File: Application.java
+ * */
 package sharedqueue;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+    /**
+     * Application Class represents a credit card application
+     * it stores all the data for producer and consumer to generate a new application
+     * and then process it based on the given application data
+     */
 public class Application {
-    //static field
+
+    //static field to produce consistent results
     private static AtomicInteger nextId = new AtomicInteger(10000);
 
     private int applicationId;
@@ -14,16 +26,22 @@ public class Application {
 
     //Constructor
 
-
+    /**
+     * Constructor creates an application and assigns an id provided by the Atomic Integer
+     * @param requestedLimit the requested amount for a give credit application
+     * @param creditScore credit score to determine the amount if approved
+     */
     public Application(int requestedLimit, int creditScore) {
         this.requestedLimit = requestedLimit;
         this.creditScore = creditScore;
         applicationId = getNextId();
     }
 
-    public static int getNextId() {
+    //Setters and getters for the instance fields
+    public int getNextId() {
         return nextId.getAndIncrement();
     }
+
 
     public int getApplicationId() {
         return applicationId;
@@ -62,6 +80,7 @@ public class Application {
         this.creditScore = creditScore;
     }
 
+    // returns a string with the application data summary
     @Override
     public String toString() {
         return "Application{" +

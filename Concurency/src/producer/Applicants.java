@@ -1,14 +1,24 @@
+/*
+ * Assignment: Concurrency
+ * Author: Vladimir Ivanov
+ * Date: 12/05/21
+ * File: Applicants.java
+ * */
 package producer;
 
 import sharedqueue.Application;
 import sharedqueue.ApplicationQueue;
 
 import java.util.Random;
-import java.util.concurrent.BlockingQueue;
+
 
 public class Applicants implements Runnable {
     private ApplicationQueue mySharedQueue;
 
+    /**
+     * Constructor method creates a producer of Applicants
+     * @param mySharedQueue Shared data structure
+     */
     public Applicants(ApplicationQueue mySharedQueue) {
         this.mySharedQueue = mySharedQueue;
     }
@@ -48,7 +58,7 @@ public class Applicants implements Runnable {
                 System.out.println(Thread.currentThread().getName()
                         + " created application #"
                         + app.getApplicationId() + " with a requested limit of " + app.getRequestedLimit());
-            } while (System.currentTimeMillis() - timeStamp <= 10000);
+            } while (System.currentTimeMillis() - timeStamp <= 60000);
         } catch (InterruptedException e) {
             System.out.println("Thread was interrupted and is sleeping for " + sleep);
         }

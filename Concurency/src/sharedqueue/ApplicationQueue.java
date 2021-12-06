@@ -22,4 +22,8 @@ public class ApplicationQueue {
         }
         return null;
     }
+
+    public int getSize(){
+        return apps.size();
+    }
 }
